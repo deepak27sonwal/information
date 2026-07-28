@@ -1,0 +1,138 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #fff;
+    font-family: Helvetica, Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header Banner Styling */
+.top-header {
+    width: 100%;
+    text-align: center;
+    padding: 14px 16px;
+    border-bottom: 1px solid #eee;
+    background-color: #fff;
+}
+
+.download-link {
+    color: #1877F2;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.download-link:hover {
+    text-decoration: underline;
+}
+
+/* Page Container */
+.page {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    min-height: calc(100vh - 90px);
+    display: flex;
+    flex-direction: column;
+    padding: 18px 22px;
+}
+
+/* Top Navigation Bar */
+.top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    position: relative;
+}
+
+
+.language {
+    text-align: center;
+    color: #666;
+    font-size: 15px;
+    width: 100%;
+}
+
+/* Logo */
+.logo {
+    margin: 60px auto 40px auto;
+    text-align: center;
+}
+
+.logo img {
+    width: 120px;
+    height: auto;
+}
+
+/* Form Controls */
+.form {
+    width: 100%;
+}
+
+input {
+    width: 100%;
+    height: 60px;
+    border: 1px solid #ddd;
+    border-radius: 18px;
+    padding: 0 18px;
+    font-size: 15px;
+    margin-bottom: 14px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #1877F2;
+}
+
+.login-btn {
+    width: 100%;
+    height: 45px;
+    border: none;
+    border-radius: 28px;
+    background: #1877F2;
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.form a {
+    display: block;
+    text-align: center;
+    margin-top: 22px;
+    color: #222;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+/* Bottom Actions & Footer */
+.bottom {
+    margin-top: auto;
+    margin-bottom: 25px;
+    padding-top: 20px;
+}
+
+.create-btn {
+    width: 100%;
+    height: 45px;
+    border: 2px solid #1877F2;
+    border-radius: 28px;
+    background: #fff;
+    color: #1877F2;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.brand {
+    margin-top: 30px;
+    text-align: center;
+    color: #444;
+    font-size: 15px;
+    font-weight: 600;
+}

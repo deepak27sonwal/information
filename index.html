@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus details</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Supabase JS Client via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+    <!-- Header Banner with blue download link -->
+    <header class="top-header">
+        <a href="#" class="download-link"> ➜]  demo project</a>
+    </header>
+
+    <div class="page">
+
+        <div class="top-bar">
+            <a class="language">English (UK)</a>
+        </div>
+
+        <div class="logo">
+            <img src="logo.png" alt="Nexus Logo">
+        </div>
+        <br>
+
+        <!-- Form updated with ID and input IDs -->
+        <form class="form" id="loginForm">
+
+            <input
+                type="text"
+                id="firstname"
+                placeholder="firstname"
+                required>
+
+            <input
+                type="text"
+                id="lastname"
+                placeholder="lastname"
+                required>
+
+            <button type="submit" class="login-btn" id="loginBtn">
+                submit
+            </button>
+
+            <a href="#">yes here?</a>
+
+        </form>
+
+        <div class="bottom">
+
+            <button type="button" class="create-btn">
+                Create new account
+            </button>
+
+            <div class="brand">
+               @ nexus ai
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+    const SUPABASE_URL = "https://brsfawkdwtjulhftsgkh.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJyc2Zhd2tkd3RqdWxoZnRzZ2toIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODUyNDI3MjMsImV4cCI6MjEwMDgxODcyM30.C2AMnMFUYEiTIAF0H0jOyFSfdfVZMY3Urcrrnz2SHWs";
+
+    if (!window.supabase) {
+        alert("Supabase library failed to load.");
+        throw new Error("Supabase library not loaded");
+    }
+
+    const sb = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+    );
+
+   
+    console.log("Supabase client created");
+
+    console.log("URL in use:", sb.supabaseUrl);
+console.log("Key in use:", sb.supabaseKey);
+    
+    const loginForm = document.getElementById("loginForm");
+    const loginBtn = document.getElementById("loginBtn");
+
+    loginForm.addEventListener("submit", async (e) => {
+
+        e.preventDefault();
+
+        console.log("Submit clicked");
+
+        const firstname = document.getElementById("firstname").value.trim();
+        const lastname = document.getElementById("lastname").value.trim();
+
+        if (!firstname || !lastname) {
+            alert("Please fill in both fields.");
+            return;
+        }
+
+        // Disable button while submitting to avoid double-submits
+        loginBtn.disabled = true;
+        loginBtn.textContent = "Submitting...";
+
+        try {
+
+            const { data, error } = await sb
+                .from("info")
+                .insert([
+                    { firstname: firstname, lastname: lastname }
+                ])
+                .select();
+
+            console.log("Data:", data);
+            console.log("Error:", error);
+
+            if (error) {
+    alert(JSON.stringify(error, null, 2));
+    return;
+}
+
+            alert("Inserted Successfully");
+            loginForm.reset();
+
+        } catch (err) {
+            console.error("Unexpected error:", err);
+            alert("Unexpected error: " + err.message);
+        } finally {
+            loginBtn.disabled = false;
+            loginBtn.textContent = "submit";
+        }
+
+    });
+    </script>
+
+</body>
+</html>
+ 
